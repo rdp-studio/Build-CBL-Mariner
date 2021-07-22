@@ -1,6 +1,5 @@
-name: CI
+name: CBL-Mariner Builder
 
-# Controls when the workflow will run
 on:
   workflow_dispatch:
 
