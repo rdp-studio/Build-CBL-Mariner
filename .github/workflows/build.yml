@@ -20,7 +20,7 @@ jobs:
       
       - name: Modify
         run: |
-          mv --remove-source-files ./custom/* ./
+          cp -R -u ./custom/* ./
           rm -rf ./custom
         
       - name: Set up Go 1.15
