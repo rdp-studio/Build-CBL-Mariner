@@ -7,7 +7,24 @@ jobs:
   build:
     runs-on: ubuntu-18.04
 
-    steps:      
+    steps: 
+      - uses: actions/checkout@v2
+        with:
+          repository: microsoft/CBL-Mariner
+          path: .
+     
+      - uses: actions/checkout@v2
+        with:
+          repository: rdp-studio/Build-CBL-Mariner-Custom
+          path: custom
+      
+      - name: Modify
+        run: |
+          rm -rf ./toolkit/resources/imageconfigs/additionalfiles/iso_initrd/installer/calamares-EULA.txt
+          rm -rf ./toolkit/resources/imageconfigs/additionalfiles/iso_initrd/installer/terminal-EULA.txt
+          mv ./custom/* ./
+          rm -rf ./custom
+        
       - name: Set up Go 1.15
         uses: actions/setup-go@v2
         with:
@@ -18,15 +35,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt -y install make tar wget curl rpm qemu-utils genisoimage pigz parted
-      
-      - name: Checkout And Patch
-        run: |
-          git clone https://github.com/microsoft/CBL-Mariner.git .
-          git checkout 1.0-stable
-          rm -rf .git
-          rm -rf ./toolkit/resources/imageconfigs/additionalfiles/iso_initrd/installer/calamares-EULA.txt
-          rm -rf ./toolkit/resources/imageconfigs/additionalfiles/iso_initrd/installer/terminal-EULA.txt
-          git clone https://github.com/rdp-studio/Build-CBL-Mariner-Custom.git .
       
       - name: Build
         run: |
