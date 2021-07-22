@@ -22,7 +22,7 @@ jobs:
         run: |
           rm -rf ./toolkit/resources/imageconfigs/additionalfiles/iso_initrd/installer/calamares-EULA.txt
           rm -rf ./toolkit/resources/imageconfigs/additionalfiles/iso_initrd/installer/terminal-EULA.txt
-          mv ./custom/* ./
+          mv -f ./custom/* ./
           rm -rf ./custom
         
       - name: Set up Go 1.15
