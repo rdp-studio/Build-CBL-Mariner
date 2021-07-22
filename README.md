@@ -1,2 +1,2 @@
 # Build-CBL-Mariner
-Build RDPStudio Fork of Microsoft CBL-Mariner Use Github Actions.
+Build Microsoft CBL-Mariner Use Github Actions.
