@@ -21,20 +21,18 @@ jobs:
       
       - name: Checkout
         run: |
-          git clone https://github.com/microsoft/CBL-Mariner.git
-          cd CBL-Mariner
+          git clone https://github.com/microsoft/CBL-Mariner.git .
           git checkout 1.0-stable
       
       - name: Build
         run: |
           cd toolkit
           sudo make iso REBUILD_TOOLS=y REBUILD_PACKAGES=n CONFIG_FILE=./imageconfigs/full.json
-          cd ../out/images/full
       
       - name: Upload to Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: CBL-Mariner
           path: |
-            *.iso
+            ./out/images/full/*.iso
 
